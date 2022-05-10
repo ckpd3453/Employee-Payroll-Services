@@ -22,7 +22,7 @@ public class EmployeePayrollServiceImpl implements IEmployeePayrollService {
     public EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO employeePayrollDTO) {
         log.info("Adding Employee Data to ArrayList");
         EmployeePayrollData employeePayrollData = null;
-        employeePayrollData = new EmployeePayrollData(employeePayrollDataList.size()+1, employeePayrollDTO);
+        employeePayrollData = new EmployeePayrollData(employeePayrollDTO);
         employeePayrollDataList.add(employeePayrollData);//adds in employee list
         return employeePayrollData;
     }

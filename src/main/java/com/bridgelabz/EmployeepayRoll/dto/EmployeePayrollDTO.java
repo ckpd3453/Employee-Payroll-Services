@@ -3,6 +3,7 @@ package com.bridgelabz.EmployeepayRoll.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import javax.validation.constraints.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 @ToString
 public class EmployeePayrollDTO {
 
