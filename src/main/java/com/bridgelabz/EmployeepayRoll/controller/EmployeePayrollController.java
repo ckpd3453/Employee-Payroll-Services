@@ -30,7 +30,7 @@ public class EmployeePayrollController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @RequestMapping(value = {"/get"})
+    @GetMapping(value = {"/get"})
     public ResponseEntity<ResponseDTO> getEmployeePayrollData() {
         List<EmployeePayrollData> employeePayrollDataList = null;
         employeePayrollDataList = employeePayrollService.getEmployeePayrollData();
