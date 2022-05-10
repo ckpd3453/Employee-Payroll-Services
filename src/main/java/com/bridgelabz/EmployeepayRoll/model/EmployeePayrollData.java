@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "Employee_PayRoll")
+@Table(name = "employee_pay_roll")
 @NoArgsConstructor
 public @Data class EmployeePayrollData {
 
@@ -30,7 +30,7 @@ public @Data class EmployeePayrollData {
     private String profilePic;
 
     @ElementCollection
-    @CollectionTable(name = "Employee_Department", joinColumns = @JoinColumn(name="id"))
+    @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name="id"))
     @Column(name = "department")
     private List<String> departments;
 
