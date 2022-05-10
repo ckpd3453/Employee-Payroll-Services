@@ -16,9 +16,17 @@ import java.util.List;
 public class EmployeePayrollController {
 
     @Autowired
-    IEmployeePayrollService employeePayrollService;
+    private IEmployeePayrollService employeePayrollService;
 
-    @GetMapping( "/get")
+    @PostMapping("/add")
+    public ResponseEntity<ResponseDTO> addEmployeePayrollData(@RequestBody EmployeePayrollDTO empPayrollDTO) {
+        EmployeePayrollData employeePayrollData = null;
+        employeePayrollData = employeePayrollService.createEmployeePayrollData(empPayrollDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Created employee Payroll data successfully", employeePayrollData);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = {"/get"})
     public ResponseEntity<ResponseDTO> getEmployeePayrollData() {
         List<EmployeePayrollData> employeePayrollDataList = null;
         employeePayrollDataList = employeePayrollService.getEmployeePayrollData();
@@ -32,14 +40,6 @@ public class EmployeePayrollController {
         employeePayrollData=employeePayrollService.getEmployeePayrollDataById(empId);
         ResponseDTO respDTO = new ResponseDTO("Get Call Success for id successful ", employeePayrollData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
-    }
-
-    @PostMapping("/add")
-    public ResponseEntity<ResponseDTO> addEmployeePayrollData(@RequestBody EmployeePayrollDTO empPayrollDTO) {
-        EmployeePayrollData employeePayrollData = null;
-        employeePayrollData = employeePayrollService.createEmployeePayrollData(empPayrollDTO);
-        ResponseDTO responseDTO = new ResponseDTO("Created employee Payroll data successfully", employeePayrollData);
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
     @PutMapping("/update/{empId}")

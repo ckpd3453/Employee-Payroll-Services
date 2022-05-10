@@ -2,16 +2,14 @@ package com.bridgelabz.EmployeepayRoll.service;
 
 import com.bridgelabz.EmployeepayRoll.dto.EmployeePayrollDTO;
 import com.bridgelabz.EmployeepayRoll.model.EmployeePayrollData;
-import com.bridgelabz.EmployeepayRoll.repository.IEmployeePayrollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeePayrollServiceImpl implements IEmployeePayrollService{
-
-    @Autowired
-    IEmployeePayrollRepository employeeRepository;
+@Service
+public class EmployeePayrollServiceImpl implements IEmployeePayrollService {
 
     private List<EmployeePayrollData> employeePayrollDataList = new ArrayList<>();
 
@@ -22,14 +20,14 @@ public class EmployeePayrollServiceImpl implements IEmployeePayrollService{
 
     @Override
     public EmployeePayrollData getEmployeePayrollDataById(int empId) {
-        return employeePayrollDataList.get(empId-1);
+        return employeePayrollDataList.get(empId-1);//as arraylist index is starts from 0
     }
 
     @Override
     public EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO employeePayrollDTO) {
         EmployeePayrollData employeePayrollData = null;
         employeePayrollData = new EmployeePayrollData(employeePayrollDataList.size()+1, employeePayrollDTO);
-        employeePayrollDataList.add(employeePayrollData);
+        employeePayrollDataList.add(employeePayrollData);//adds in employee list
         return employeePayrollData;
     }
 

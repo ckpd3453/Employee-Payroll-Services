@@ -1,29 +1,13 @@
 package com.bridgelabz.EmployeepayRoll.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResponseDTO {
-    public String message;
-    public Object data;
-
-    public ResponseDTO(String message, Object data) {
-        this.message = message;
-        this.data = data;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-
+    private String message;
+    private Object data;
 }
