@@ -1,6 +1,7 @@
 package com.bridgelabz.EmployeepayRoll.service;
 
 import com.bridgelabz.EmployeepayRoll.dto.EmployeePayrollDTO;
+import com.bridgelabz.EmployeepayRoll.exception.EmployeePayrollException;
 import com.bridgelabz.EmployeepayRoll.model.EmployeePayrollData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,10 @@ public class EmployeePayrollServiceImpl implements IEmployeePayrollService {
     @Override
     public EmployeePayrollData getEmployeePayrollDataById(int empId) {
         log.info("Getting Employee Payroll data by ID");
-        return employeePayrollDataList.get(empId-1);//as arraylist index is starts from 0
+        return employeePayrollDataList.stream()
+                .filter(empData->empData.getEmployeeId()==empId)
+                .findFirst()
+                .orElseThrow(()->new EmployeePayrollException("Employee Not Found"));
     }
 
     @Override
