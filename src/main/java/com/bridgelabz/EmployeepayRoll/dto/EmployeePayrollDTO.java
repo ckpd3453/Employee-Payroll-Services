@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,19 +14,25 @@ import java.util.List;
 @ToString
 public class EmployeePayrollDTO {
 
-   @NotNull(message = "ERROR: Name cannot be null!!!")
-    @NotEmpty(message = "ERROR: Name cannot be empty!")
-    @Pattern(regexp = "^([A-Z][a-zA-Z]{2,}[ ]?)+$", message = "ERROR: Please enter a valid name!")
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Employee name is Invalid")
+    @NotEmpty(message = "Employee name cannot be null")
     public String name;
-
-    @NotNull(message = "ERROR: Salary cannot be null!!")
-    @Min(value = 5000, message = "ERROR: Please enter a salary greater than 5000")
+    @Min(value = 500, message = "min wage should be more than 500")
     public long salary;
+    @Pattern(regexp = "male|female", message = "Gender needs to be male or female")
+    public String gender;
 
- public String gender;
- @JsonFormat(pattern = "dd MM yyyy")
- public LocalDate startDate;
- public String notes;
- public String profilePic;
- public List<String> departments;
+    @JsonFormat(pattern = "dd MM yyyy")
+    @NotNull(message = "Please Enter The Start Date")
+    @PastOrPresent(message = "Please Enter Valid Date(i,e. Past or Present)")
+    public LocalDate startDate;
+
+    @NotBlank(message = "note should not be empty")
+    public String notes;
+
+    @NotBlank(message = "profile pic should not be empty")
+    public String profilePic;
+
+    @NotNull(message = "Please Enter the Department")
+    public List<String> departments;
 }

@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeePayrollData {
-    
+
+
     private int employeeId;
     private String name;
     private long salary;
